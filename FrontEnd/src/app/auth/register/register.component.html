@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <br>
+    <h1>Registration</h1>
+    <div>
+        Already have an account?&nbsp;
+        <a [routerLink]="['/Login']">Log in here </a>
+    </div>
+    <br>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-info" [ngStyle]="{'width.%': step*addStep}" role="progressbar" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="card-body">
+            <app-step1 *ngIf="step === 1" (nextStepEvent)="increaseStep($event)"></app-step1>
+            <app-step2 *ngIf="step === 5" (nextStepEvent)="increaseStep($event)" (previousStepEvent)="decreaseStep($event)"></app-step2>
+            <app-step3 *ngIf="step === 2" (nextStepEvent)="increaseStep($event)" (previousStepEvent)="decreaseStep($event)" (pricingPlanEvent)="savePricingPlan($event)"></app-step3>
+            <app-step4 *ngIf="step === 3" (nextStepEvent)="increaseStep($event)" (previousStepEvent)="decreaseStep($event)" (nextEvent)="saveSubscriber($event)"></app-step4>
+            <app-step5 *ngIf="step === 4" (previousStepEvent)="decreaseStep($event)" (tokenIdEvent)="saveTokenId($event)"></app-step5>
+        </div>
+    </div>
+</div>

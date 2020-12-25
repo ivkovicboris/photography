@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <nav id="sidebar" [ngClass]="{active: toggle}">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <span class="text-center">
+                <h3>Logo</h3>
+                <strong>LG</strong>
+            </span>
+        </div>
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" >
+                    <i class="material-icons">home</i>
+                    Home
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a [routerLink]="['/Home']">Dashboard</a>
+                    </li>
+                </ul>
+            </li>
+            <li *ngIf="data.getPermission()">
+                <a aria-expanded="false" [routerLink]="['/Home/Customer']">
+                    <i class="material-icons">people</i>
+                    Customers
+                </a>
+            </li>
+            <li>
+                <a aria-expanded="false" [routerLink]="['/Home/Gallery']">
+                    <i class="material-icons">collections</i>
+                    Gallery
+                </a>
+            </li>
+            <li>
+                <a aria-expanded="false" [routerLink]="['/Home']">
+                    <i class="material-icons">bar_chart</i>
+                    Reports
+                </a>
+            </li>
+            <li>
+                <a aria-expanded="false" >
+                    <i class="material-icons">account_balance_wallet</i>
+                    Pricing
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="material-icons">phone</i>
+                    Contact
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <span style="width: 100%;">
+        <app-navbar (toggleEvent)="onToggle($event)"></app-navbar>
+        <div class="container" style="max-width:1500px;">
+            <router-outlet></router-outlet>
+        </div>
+    </span>
+</div>
+
+<app-suspended-user-modal></app-suspended-user-modal>
